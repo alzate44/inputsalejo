@@ -112,5 +112,30 @@ namespace inputsalejo.Functions.Functions
                 Result = inputEntity
             });
         }
+
+        [FunctionName(nameof(GetAllInputs))]
+        public static async Task<IActionResult> GetAllInputs(
+    [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "input")] HttpRequest req,
+    [Table("input", Connection = "AzureWebJobsStorage")] CloudTable inputTable,
+    ILogger log)
+        {
+            log.LogInformation("Get all inputs received.");
+
+            TableQuery<InputEntity> query = new TableQuery<InputEntity>();
+            TableQuerySegment<InputEntity> inputs = await inputTable.ExecuteQuerySegmentedAsync(query, null);
+
+
+            string message = "Retrieved all inputs.";
+            log.LogInformation(message);
+
+            return new OkObjectResult(new Response
+            {
+                IsSuccess = true,
+                Message = message,
+                Result = inputs
+            });
+        }
+
+
     }
 }
