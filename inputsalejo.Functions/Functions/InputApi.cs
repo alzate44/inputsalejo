@@ -115,9 +115,9 @@ namespace inputsalejo.Functions.Functions
 
         [FunctionName(nameof(GetAllInputs))]
         public static async Task<IActionResult> GetAllInputs(
-    [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "input")] HttpRequest req,
-    [Table("input", Connection = "AzureWebJobsStorage")] CloudTable inputTable,
-    ILogger log)
+          [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "input")] HttpRequest req,
+          [Table("input", Connection = "AzureWebJobsStorage")] CloudTable inputTable,
+          ILogger log)
         {
             log.LogInformation("Get all inputs received.");
 
@@ -135,6 +135,68 @@ namespace inputsalejo.Functions.Functions
                 Result = inputs
             });
         }
+
+        [FunctionName(nameof(GetInputById))]
+        public static IActionResult GetInputById(
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "input/{id}")] HttpRequest req,
+            [Table("input", "INPUT", "{id}", Connection = "AzureWebJobsStorage")] InputEntity inputEntity,
+            string id,
+            ILogger log)
+        {
+            log.LogInformation($"Get input by id: {id}, received.");
+
+            if (inputEntity == null)
+            {
+                return new BadRequestObjectResult(new Response
+                {
+                    IsSuccess = false,
+                    Message = "Input not found."
+                });
+            }
+
+            string message = $"Input: {inputEntity.RowKey}, retrieved.";
+            log.LogInformation(message);
+
+            return new OkObjectResult(new Response
+            {
+                IsSuccess = true,
+                Message = message,
+                Result = inputEntity
+            });
+        }
+
+        [FunctionName(nameof(DeleteInput))]
+        public static async Task<IActionResult> DeleteInput(
+            [HttpTrigger(AuthorizationLevel.Anonymous, "delete", Route = "input/{id}")] HttpRequest req,
+            [Table("input", "INPUT", "{id}", Connection = "AzureWebJobsStorage")] InputEntity inputEntity,
+            [Table("input", Connection ="AzureWebJobsStorage")] CloudTable inputTable,
+            string id,
+            ILogger log)
+        {
+            log.LogInformation($"Delete input: {id}, received.");
+
+            if (inputEntity == null)
+            {
+                return new BadRequestObjectResult(new Response
+                {
+                    IsSuccess = false,
+                    Message = "Input not found."
+                });
+            }
+
+            await inputTable.ExecuteAsync(TableOperation.Delete(inputEntity));
+
+            string message = $"Input: {inputEntity.RowKey}, deleted.";
+            log.LogInformation(message);
+
+            return new OkObjectResult(new Response
+            {
+                IsSuccess = true,
+                Message = message,
+                Result = inputEntity
+            });
+        }
+
 
 
     }
