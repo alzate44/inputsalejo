@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Internal;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
+using Microsoft.WindowsAzure.Storage.Table;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -42,7 +43,7 @@ namespace inputsalejo.Tests.Helpers
         {  
             return new DefaultHttpRequest(new DefaultHttpContext())
             {
-                Path = $"/{inputId}"
+                Path = $"/{inputId}",
             };
         }
 
@@ -60,16 +61,18 @@ namespace inputsalejo.Tests.Helpers
             return new DefaultHttpRequest(new DefaultHttpContext());
         }
 
-
+        
         public static Input GetInputRequest()
         {
             return new Input
             {
+                
                 InputDate = DateTime.UtcNow,
                 Consolidated = false,
-                EmployeeId = 1,
+                EmployeeId = 8,
                 Type = 0
-
+                
+                
             };
         }
 
