@@ -5,7 +5,8 @@ using System.Text;
 namespace inputsalejo.Common.Models
 {
     public class Input
-    {
+    { 
+        //Table Atributes
         public int EmployeeId { get; set; }
         public DateTime InputDate { get; set; }
         public int Type { get; set; }

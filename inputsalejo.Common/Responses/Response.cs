@@ -6,6 +6,7 @@ namespace inputsalejo.Common.Responses
 {
     public class Response
     {
+        //Responses
         public bool IsSuccess { get; set; }
 
         public string Message { get; set; }
