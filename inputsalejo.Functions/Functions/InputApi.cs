@@ -1,22 +1,22 @@
-using System;
-using System.IO;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Extensions.Http;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
-using Microsoft.WindowsAzure.Storage.Table;
 using inputsalejo.Common.Models;
 using inputsalejo.Common.Responses;
 using inputsalejo.Functions.Entities;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Azure.WebJobs;
+using Microsoft.Azure.WebJobs.Extensions.Http;
+using Microsoft.Extensions.Logging;
+using Microsoft.WindowsAzure.Storage.Table;
+using Newtonsoft.Json;
+using System;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace inputsalejo.Functions.Functions
 {
     public static class InputApi
     {
-        [FunctionName(nameof (CreateInput))]
+        [FunctionName(nameof(CreateInput))]
         public static async Task<IActionResult> CreateInput(
             [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "input")] HttpRequest req,
             [Table("input", Connection = "AzureWebJobsStorage")] CloudTable inputTable,
@@ -27,7 +27,7 @@ namespace inputsalejo.Functions.Functions
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             Input input = JsonConvert.DeserializeObject<Input>(requestBody);
 
-            if(string.IsNullOrEmpty(input?.EmployeeId.ToString()))
+            if (string.IsNullOrEmpty(input?.EmployeeId.ToString()))
             {
                 return new BadRequestObjectResult(new Response
                 {
@@ -47,7 +47,7 @@ namespace inputsalejo.Functions.Functions
                 Consolidated = false,
                 PartitionKey = "INPUT",
                 RowKey = Guid.NewGuid().ToString(),
-                
+
 
             };
 
