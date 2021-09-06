@@ -24,7 +24,7 @@ namespace inputsalejo.Functions.Functions
 
             foreach (InputEntity consolidatedInput in consolidatedInputs)
             {
-                await inputTable.ExecuteAsync(TableOperation.Insert)
+               
             }
 
         }

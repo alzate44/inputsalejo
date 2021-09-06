@@ -80,49 +80,49 @@ namespace inputsalejo.Tests.Tests
 
         }
 
-        [Fact]
-        public async void DeleteInput_ShouldReturn_200()
-        {
-            //Arrenge
+        //[Fact]
+        //public async void DeleteInput_ShouldReturn_200()
+        //{
+        //    //Arrenge
 
-            MockCloudTableInputs mockInputs = new MockCloudTableInputs(new Uri("http://127.0.0.1:10002/devstoreaccount1/reports"));
-            Input inputRequest = TestFactory.GetInputRequest();
-            InputEntity inputEntity = new InputEntity();
-            //TableEntity tableEntity = new TableEntity();
-            Guid inputId = Guid.NewGuid();
-            DefaultHttpRequest request = TestFactory.CreateHttpRequest(inputId, inputRequest);
+        //    MockCloudTableInputs mockInputs = new MockCloudTableInputs(new Uri("http://127.0.0.1:10002/devstoreaccount1/reports"));
+        //    Input inputRequest = TestFactory.GetInputRequest();
+        //    InputEntity inputEntity = new InputEntity();
+        //    //TableEntity tableEntity = new TableEntity();
+        //    Guid inputId = Guid.NewGuid();
+        //    DefaultHttpRequest request = TestFactory.CreateHttpRequest(inputId, inputRequest);
 
-            //Act
+        //    //Act
 
-            IActionResult response = await InputApi.DeleteInput(request, inputEntity, mockInputs, inputId.ToString(), logger);
+        //    IActionResult response = await InputApi.DeleteInput(request, inputEntity, mockInputs, inputId.ToString(), logger);
 
-            //Assert
+        //    //Assert
 
-            OkObjectResult result = (OkObjectResult)response;
-            Assert.Equal(StatusCodes.Status200OK, result.StatusCode);
+        //    OkObjectResult result = (OkObjectResult)response;
+        //    Assert.Equal(StatusCodes.Status200OK, result.StatusCode);
 
-        }
+        //}
 
-        [Fact]
-        public async void GetAllInputs_ShouldReturn_200()
-        {
-            //Arrenge
+        //[Fact]
+        //public async void GetAllInputs_ShouldReturn_200()
+        //{
+        //    //Arrenge
 
-            MockCloudTableInputs mockInputs = new MockCloudTableInputs(new Uri("http://127.0.0.1:10002/devstoreaccount1/reports"));
-            Input inputRequest = TestFactory.GetInputRequest();
-            Guid inputId = Guid.NewGuid();
-            DefaultHttpRequest request = TestFactory.CreateHttpRequest(inputId, inputRequest);
+        //    MockCloudTableInputs mockInputs = new MockCloudTableInputs(new Uri("http://127.0.0.1:10002/devstoreaccount1/reports"));
+        //    Input inputRequest = TestFactory.GetInputRequest();
+        //    Guid inputId = Guid.NewGuid();
+        //    DefaultHttpRequest request = TestFactory.CreateHttpRequest(inputId, inputRequest);
 
-            //Act
+        //    //Act
 
-            IActionResult response = await InputApi.GetAllInputs(request, mockInputs, logger);
+        //    IActionResult response = await InputApi.GetAllInputs(request, mockInputs, logger);
 
-            //Assert
+        //    //Assert
 
-            OkObjectResult result = (OkObjectResult)response;
-            Assert.Equal(StatusCodes.Status200OK, result.StatusCode);
+        //    OkObjectResult result = (OkObjectResult)response;
+        //    Assert.Equal(StatusCodes.Status200OK, result.StatusCode);
 
-        }
+        //}
 
     }
 }

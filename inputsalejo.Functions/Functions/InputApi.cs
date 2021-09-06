@@ -27,12 +27,13 @@ namespace inputsalejo.Functions.Functions
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             Input input = JsonConvert.DeserializeObject<Input>(requestBody);
 
-            if (string.IsNullOrEmpty(input?.EmployeeId.ToString()))
+            if (string.IsNullOrEmpty(input?.EmployeeId.ToString()) || string.IsNullOrEmpty(input?.InputDate.ToString()) ||
+                string.IsNullOrEmpty(input?.Type.ToString()))
             {
                 return new BadRequestObjectResult(new Response
                 {
                     IsSuccess = false,
-                    Message = "The field EmployeeId cannot be empty."
+                    Message = "The fields EmployeeId cannot be empty."
                 });
 
             }
