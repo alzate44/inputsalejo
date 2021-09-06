@@ -1,13 +1,12 @@
-﻿using System;
+﻿using Microsoft.WindowsAzure.Storage.Table;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace inputsalejo.Common.Models
+namespace inputsalejo.Functions.Entities
 {
-    public class Consolidated
+    public class ConsolidatedEntity : TableEntity
     {
-
-        //Table Atributes
         public int EmployeeId { get; set; }
         public DateTime ConsolidatedDate { get; set; }
         public int Minutes { get; set; }

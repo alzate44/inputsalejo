@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "inputsalejo.Common", "input
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "inputsalejo.Functions", "inputsalejo.Functions\inputsalejo.Functions.csproj", "{C6E1B780-0A2F-419E-8F29-D3AEF9E57808}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "inputsalejo.Tests", "inputsalejo.Tests\inputsalejo.Tests.csproj", "{A8B9B86D-DEDE-4471-8572-CFBFC4D82E9C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "inputsalejo.Tests", "inputsalejo.Tests\inputsalejo.Tests.csproj", "{A8B9B86D-DEDE-4471-8572-CFBFC4D82E9C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
